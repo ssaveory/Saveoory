@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+
+body {
+    background: url("background.jpeg") no-repeat;
+    background-size: none;
+    font-family: 'Noto Sans', sans-serif;
+
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu {
+    max-width: 50%;
+}
+   
+ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    font-family: arial;
+}
+   
+ul li {
+    float: left;
+    width: 150px;
+    height: 40px;
+    background-color: black;
+    opacity: .8;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+   
+   ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+   
+   ul li a:hover {
+    background-color: rgb(27, 25, 41);
+}
+   
+   ul li ul li{
+    display: none;
+}
+   
+   ul li:hover ul li {
+    display: block;
+}
+
+i {
+    color: white;
+}
+
+td {
+    padding: 4px;
+    color: whitesmoke;
+    
+}  
+
+.button {
+    border: 2px solid white;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    background-color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 20px;
+    
+
+}
+
+.prof-cont {
+    display: flex;
+    justify-content: space-around;
+
+    
+}
+
+.prof-cont p {
+    text-decoration: underline;
+}
+
+form {
+    color: whitesmoke;
+    margin: 20px;
+    font-size: 22px;
+    font-family: 'Noto Sans', sans-serif;
+    padding: 20px;
+}
+
+.profile-edit {
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 20px;
+}
+
+
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+}
+
+.main-table {
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.main-table p {
+    font-size: 20px;
+    color: white;
+}
+
+.main-table table tr td {
+    border: 1px solid green;
+}
+
+.main-table table td {
+    padding: 10px 20px 10px 20px;
+}
+
+.main-graph {
+    
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SAVORY</title>
+        <link rel="stylesheet" type="text/css" href="./css/main.css">
+        <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+        <script src="https://use.fontawesome.com/e80d0149e1.js"></script>
+        
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="analyze.html">Analyze</a>
+                        <ul>
+                            <li><a href="">גרף1</a></li>
+                            <li><a href="">גרף2</a></li>
+                            <li><a href="">גרף3</a></li>
+                            <li><a href="">גרף4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="masswiz.html">mass wiz</a>
+                        <ul>
+                            <li><a href="">khalifa1</a></li>
+                            <li><a href="">khalifa2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html"><i class="fa fa-power-off"></i></a></li>
+                </ul>
+            </div>
+        </div>  
+        
+    <div class="prof-cont">
+        <div class="profile-edit">
+            <form action="#" method="post">
+                <table>
+                        <tr>
+                            <td>First Name: </td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name: </td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>City: </td>
+                            <td><input type="text"></td>
+                        </tr>
+                </table>
+                <p>Please select your family status:</p>
+                <div class="family-status">
+                    <input type="radio" id="familyChoice1"
+                    name="family" value="single">
+                    <label for="statusChoice1">Single</label>
+                    <input type="radio" id="familyChoice2"
+                    name="family" value="married">
+                    <label for="statusChoice2">Married</label>
+                    <input type="radio" id="familyChoice3"
+                    name="family" value="marriedPlus">
+                    <label for="statusChoice3">Married With Children</label>
+                </div>
+
+                <p>Please select your living conditions:</p>
+                <div class="living-conditions">
+                    <input type="radio" id="livingChoice1"
+                    name="living" value="alone">
+                    <label for="livingChoice1">Alone</label>
+                    <input type="radio" id="livingChoice2"
+                    name="living" value="couple">
+                    <label for="livingChoice2">With a partner</label>
+                    <input type="radio" id="livingChoice3"
+                    name="living" value="roomates">
+                    <label for="livingChoice3">With roomates</label>
+                </div>
+
+                <p>Select number of people living with yourself if relevant: </p>
+                <div class="people-num">
+                    <select name="people-num">
+                        <option value="1">0</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                        <option value="5">4</option>
+                        <option value="6">5</option>
+                        <option value="7">6</option>
+                        <option value="8">7 and above</option>
+                    </select>
+                </div>
+
+                <p>Select number of roomates living with yourself if relevant: </p>
+                <div class="roomates-num">
+                    <select name="roomates-num">
+                        <option value="1">0</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                        <option value="5">4</option>
+                        <option value="6">5</option>
+                        <option value="7">6</option>
+                        <option value="8">7 and above</option>
+                    </select>
+                </div>
+
+                <p>Please select your employment status:</p>
+                <div class="employment-status">
+                    <input type="radio" id="employmentChoice1"
+                    name="employment" value="single">
+                    <label for="employmentChoice1">Unemployed</label>
+                    <input type="radio" id="employmentChoice2"
+                    name="employment" value="married">
+                    <label for="employmentChoice2">Half Time Job</label>
+                    <input type="radio" id="employmentChoice3"
+                    name="employment" value="marriedPlus">
+                    <label for="employmentChoice3">Full Time Job</label>
+                </div>
+
+                <p>Birthday:</p>
+                <div class:" birth-day">
+                    <input type="date" name="bday">
+                </div>
+
+                <div>
+                    <button class="button" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </body>
+</html>

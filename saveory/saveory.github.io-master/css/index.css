@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+
+body {
+    background: url("background.jpeg") no-repeat;
+    background-size: none;
+    font-family: 'Noto Sans', sans-serif;
+    
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Permanent Marker', cursive;
+    color: white;
+    padding: 10px;
+    text-shadow: 5px 5px black;
+ 
+}
+
+
+h2 {
+    text-align: center;
+    color: whitesmoke;
+    
+}
+
+td {
+    padding: 4px;
+    color: whitesmoke;
+    
+}
+
+.sign-up-form, .sign-in-form {
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 5px;
+}
+
+.button {
+    color: white;
+    padding: 5px 10px 5px 10px;
+    background-color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid white;
+
+
+}
+
+.center-button {
+    display: flex;
+    justify-content: space-around;
+    
+}
