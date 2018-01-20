@@ -8,22 +8,23 @@
                 <table>
                         <tr>
                             <td>First Name: </td>
-                            <td><input type="text" value="{{ fname }}" ></td>
+                            <td><input type="text" name="fname" value="{{ fname }}" ></td>
                             
                         </tr>
                         <tr>
                             <td>Last Name: </td>
-                            <td><input type="text" value=" {{ lname }}"></td>
+                            <td><input type="text" name="lname" value=" {{ lname }}"></td>
                         </tr>
                         <tr>
                             <td>City: </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" name="city" value="{{ city }}"></td>
                         </tr>
                 </table>
                 <p>Please select your family status:</p>
+
                 <div class="family-status">
                     <input type="radio" id="familyChoice1"
-                    name="family" value="single">
+                    name="family" value="single" >
                     <label for="statusChoice1">Single</label>
                     <input type="radio" id="familyChoice2"
                     name="family" value="married">
@@ -48,7 +49,7 @@
 
                 <p>Select number of people living with yourself if relevant: </p>
                 <div class="people-num">
-                    <select name="people-num">
+                    <select name="people">
                         <option value="1">0</option>
                         <option value="2">1</option>
                         <option value="3">2</option>
@@ -62,7 +63,7 @@
 
                 <p>Please select your employment precentage:</p>
                 <div class="employment-status">
-                    <select name="job-percent">
+                    <select name="job">
                         <option value="1">0% (Unemployed)</option>
                         <option value="2">25%</option>
                         <option value="3">50%</option>

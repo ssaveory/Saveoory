@@ -29,12 +29,13 @@ class User(object):
 				self.lastName = res['lastName']
 				self.email = res['email']
 				self.hashPassword = res['hashPassword']
-				self.age = res['age']
 				self.city = res['city']
 				self.familyStatus = res['familyStatus']
 				self.livingConditions = res['livingConditions']
 				self.numOfRoomMate = res['numOfRoomMate']
 				self.employmentStatus = res['employmentStatus']
+				self.age = res['age']
+
 	
 	#Insert the user to the database    
 	#@classmethod
@@ -76,10 +77,12 @@ class User(object):
 #Profile class - defining the user profile
 #the following fields are optional (default value is None) :
 #age, city, familyStatus, livingConditions, numOfRoomMate, employmentStatus
-class Profile(User):
-	def __init__(self,newUser, **kwargs):
-		User.__init__(self,newUser,**kwargs)
-		
+class Profile(object):
+	def __init__(self, **kwargs):
+		self.firstName = kwargs['firstName']
+		self.lastName = kwargs['lastName']
+		self.email = kwargs['email']
+		self.hashPassword = kwargs['password']
 		self.age = kwargs['age']
 		self.city = kwargs['city']
 		self.familyStatus = kwargs['familyStatus']
@@ -87,9 +90,17 @@ class Profile(User):
 		self.numOfRoomMate = kwargs['numOfRoomMate']
 		self.employmentStatus = kwargs['employmentStatus']
 	    
-	def editProfile(**kwargs):
-		for key, value in kwargs.iteritems():
-			self.usersDb.__tableName__.update({ key : value})
+	def editProfile(self):
+		data = mongo.db.usersData
+		data.update({"email": self.email}, {'$set':  {"firstName" : self.firstName } })
+		data.update({"email": self.email}, {'$set' : {"lastName" : self.lastName }} )
+		data.update({"email": self.email}, {'$set' : {"age" : self.age }})
+		data.update({"email": self.email}, {'$set' : {"city" : self.city }})
+		data.update({"email": self.email}, {'$set' : {"familyStatus" : self.familyStatus }})
+		data.update({"email": self.email}, {'$set' : {"livingConditions" : self.livingConditions }})
+		data.update({"email": self.email}, {'$set' : {"numOfRoomMate" : self.numOfRoomMate }})
+		data.update({"email": self.email}, {'$set' : {"employmentStatus" : self.employmentStatus }})
+
 		
 
 

@@ -21,6 +21,10 @@ mongo = PyMongo(app, config_prefix='MONGO')
 def index():
     return render_template('index.html',lform=SignupForm(),rform=SigninForm())
 
+####################################################
+
+
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -42,8 +46,20 @@ def register():
             except 'userNotExist':
                 return render_template('index.html', lform=lform, rform=SigninForm())
             session['email'] = newUser.email
-            return  render_template('profile.html', fname = credentials['firstName'],
-                                                    lname = credentials['lastName'])
+            session['password'] = lform.password.data
+            return  render_template('profile.html', fname = newUser.firstName,
+                                                    lname = newUser.firstName,
+                                                    city = None,
+                                                    fstatus = None,
+                                                    licond = None,
+                                                    numppl = None,
+                                                    empstatus = None,
+                                                    age = None)
+
+####################################################
+
+
+
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -59,13 +75,24 @@ def signin():
             #    return render_template('index.html', rform=rform, lform=SignupForm())
             if user.checkPass(rform.password.data):
                 session['email'] = rform.email.data
+                session['password'] = rform.password.data
                 return redirect(url_for('home'))
             return render_template('index.html', rform=rform, lform=SignupForm())
+
+
+####################################################
+
+
 
 @app.route('/logout', methods=['GET'])
 def logout():
     session.pop('email', None)
+    session.pop('password',None)
     return render_template('index.html',lform=SignupForm(),rform=SigninForm())
+
+
+####################################################
+
 
 
 
@@ -78,21 +105,41 @@ def home():
     fname = user.firstName
     return render_template('main.html')
 
+
+####################################################
+
+
 @app.route('/upload', methods=['GET','POST'])
 def upload():
     return render_template('main.html')
 
 
 
+
+
+####################################################
+
+
 @app.route('/profile', methods=['GET','POST'])
 def profile():
     email= session['email']
-    credentials = { "email" : email }
-    user = User(False,**credentials)
-    print user.firstName
-    fname = user.firstName
+    password = session['password']
+    credentials = { "firstName": request.form['fname'], "lastName": request.form['lname'],"email" : email,
+                    "password" : password, "city": request.form['city'],
+                    "familyStatus": request.form['family'], "livingConditions": request.form['living'],
+                     "numOfRoomMate": request.form['people'], "employmentStatus": request.form['job'],
+                     "age": request.form['bday'] }
+    
+    profile = Profile(**credentials)
+    profile.editProfile()
+
     return render_template('main.html' )
 
+
+
+
+
+####################################################
 @app.route('/analyze', methods=['GET','POST'])
 def analyze():
     return render_template('main.html')

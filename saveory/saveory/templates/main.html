@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-      <div class="main-table">
+      <div class="main-table" >
         <p>Last Transactions</p>
 
          <script src="/static/js/initialise.js" type="text/javascript" charset="utf-8" async defer></script>
@@ -16,6 +16,8 @@
                 <th>Column 5</th>
             </tr>
         </thead>
+        <hr size="pixels">
+
         <tfoot>
             <tr>
                 <th>Column 1</th>
@@ -49,7 +51,7 @@
     </table>
 <hr size="pixels">
         <p>Last Transactions</p>
-        <div style=" padding-left:0; padding-right:0; top:60px; right:600; width:400px; height:400px;">
+        <div style=" padding-left:0; padding-right:0; top:60px; right:600; width:400px; height:400px; color: white;">
         <canvas id="myChart" width="300" height="300"></canvas>
         <script>
             var ctx = document.getElementById("myChart").getContext('2d');
@@ -81,17 +83,21 @@
                             'rgba(153, 102, 255, 1)',
                             'rgba(255, 159, 64, 1)'
                         ],
-                        borderWidth: 1
+                        borderWidth: 2
                     }]
                 },
                 options: {
+    
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero:true
+                                beginAtZero:true,
+                                fontSize: 20,
                             }
                         }]
+                        
                     }
+
                 }
             });
         </script>
