@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<meta charset="utf-8">
-	<title>$aveory</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>$aveory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
         <link  href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" >
     </head>
     <body>
@@ -12,19 +12,53 @@
             <div class="sign-up">
                 <h2>Sign Up</h2>
                 <div class="sign-up-form">
-                    <form  action="{{ url_for('register') }}" method="post">
-                        <table>
+                    <form  name=lform action="{{ url_for('register') }}" method="post">
+                        {{ lform.hidden_tag() }}
+            <table>
                             <tr>
-                                <td>First Name</td>
-                                <td><input type="text" name="fname" placeholder="John"></td>
+                                <td>{{ lform.firstName.label }}</td>
+                    {% if lform.firstName.errors %}
+                    {% for error in lform.firstName.errors %}
+                           <td><class="error-message">{{ error }}</td>
+                    {% endfor %}
+                    {% endif %}
+                                <td>{{ lform.firstName }}</td>
                             </tr>
                             <tr>
-                                <td>Last Name</td>
-                                <td><input type="text" name="lname" placeholder="Johnson"></td>
+                                <td>{{ lform.lastName.label }}</td>
+                    {% if lform.lastName.errors %}
+                                        {% for error in lform.lastName.errors %}
+                                          <td><class="error-message">{{ error }}</td>
+                    {% endfor %}
+                                    {% endif %}
+                                <td>{{ lform.lastName }}</td>
                             </tr>
                             <tr>
-                                <td>Email</td>
-                                <td><input type="text" name="email" placeholder="johnson@saveory.com"></td>
+                                <td>{{ lform.email.label }}</td>
+                    {% if lform.email.errors %}
+                                        {% for error in lform.email.errors %}
+                                          <td><class="error-message"</td> {{ error }}</td>
+                    {% endfor %}
+                                    {% endif %}
+                                <td>{{ lform.email }}</td>
+                            </tr>
+                <tr>
+                <td>{{ lform.password.label }}</td>
+                                    {% if lform.password.errors %}
+                                        {% for error in lform.password.errors %}
+                                          <td><class="error-message"> {{ error }}<td>
+                    {% endfor %}
+                                    {% endif %}
+                                <td>{{ lform.password }}</td>
+                            </tr>
+                <tr>
+                                <td>{{ lform.confirmPassword.label }}</td>
+                                    {% if lform.confirmPassword.errors %}
+                                        {% for error in lform.confirmPassword.errors %}
+                                          <td><class="error-message"> {{ error }}<td>
+                    {% endfor %}
+                                    {% endif %}
+                                <td>{{ lform.confirmPassword }}</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -38,15 +72,26 @@
             <div class="sign-in">
                 <h2>Sign In</h2>
                 <div class="sign-in-form">
-                    <form action="{{ url_for('signin') }}" method="post">
-                        <table>
+                    <form name=rform action="{{ url_for('signin') }}" method="post">
+                        {{ rform.hidden_tag() }}
+            <table>
                             <tr>
-                                <td>Email</td>
-                                <td><input type="text" name="email"></td>
+                                <td>{{ rform.email.label }}</td>
+                    {% if rform.email.errors %}
+                                        {% for error in rform.email.errors %}
+                                          <td><class="error-message"> {{ error }}<td>
+                                        {% endfor %}
+                                    {% endif %}
+                                <td>{{ rform.email }}</td>
                             </tr>
                             <tr>
-                                <td>Password</td>
-                                <td><input type="password" name="password"></td>
+                                <td>{{ rform.password.label }}</td>
+                                    {% if rform.password.errors %}
+                                        {% for error in rform.password.errors %}
+                                          <td><class="error-message"> {{ error }}<td>
+                                        {% endfor %}
+                                    {% endif %}
+                                <td>{{ rform.password }}</td>
                             </tr>
                             <tr>
                                 <td></td>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SAVORY</title>
-        <link rel="stylesheet" type="text/css" href="./css/main.css">
-        <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+        <title>$aveory</title>
+        <link  href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" >
+        <link  href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" >
         <script src="https://use.fontawesome.com/e80d0149e1.js"></script>
         
     </head>
@@ -24,8 +24,8 @@
                     </li>
                     <li><a href="masswiz.html">mass wiz</a>
                         <ul>
-                            <li><a href="">khalifa1</a></li>
-                            <li><a href="">khalifa2</a></li>
+                            <li><a href="">1</a></li>
+                            <li><a href="">2</a></li>
                         </ul>
                     </li>
                     <li><a href="index.html"><i class="fa fa-power-off"></i></a></li>
@@ -90,36 +90,20 @@
                     </select>
                 </div>
 
-                <p>Select number of roomates living with yourself if relevant: </p>
-                <div class="roomates-num">
-                    <select name="roomates-num">
-                        <option value="1">0</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                        <option value="4">3</option>
-                        <option value="5">4</option>
-                        <option value="6">5</option>
-                        <option value="7">6</option>
-                        <option value="8">7 and above</option>
+                <p>Please select your employment precentage:</p>
+                <div class="employment-status">
+                    <select name="job-percent">
+                        <option value="1">0% (Unemployed)</option>
+                        <option value="2">25%</option>
+                        <option value="3">50%</option>
+                        <option value="4">75%</option>
+                        <option value="5">100%</option>
                     </select>
                 </div>
 
-                <p>Please select your employment status:</p>
-                <div class="employment-status">
-                    <input type="radio" id="employmentChoice1"
-                    name="employment" value="single">
-                    <label for="employmentChoice1">Unemployed</label>
-                    <input type="radio" id="employmentChoice2"
-                    name="employment" value="married">
-                    <label for="employmentChoice2">Half Time Job</label>
-                    <input type="radio" id="employmentChoice3"
-                    name="employment" value="marriedPlus">
-                    <label for="employmentChoice3">Full Time Job</label>
-                </div>
-
-                <p>Birthday:</p>
-                <div class:" birth-day">
-                    <input type="date" name="bday">
+                <p>Age:</p>
+                <div class:"birth-day">
+                    <input type="text" name="bday">
                 </div>
 
                 <div>

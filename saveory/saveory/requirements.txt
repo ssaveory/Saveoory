@@ -1,4 +1,0 @@
-pip install flask
-pip install Flask-PyMongo
-pip instal Flask-wtf
-

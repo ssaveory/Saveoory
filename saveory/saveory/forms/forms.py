@@ -15,6 +15,9 @@ class SignupForm(Form):
     																EqualTo('password', message="Passwords must match.")])
     submit = SubmitField('Sign up')
 
+    
+        
+
 class SigninForm(Form):
     email = StringField('Email', validators=[DataRequired("Please enter your email address."), Email("Please enter a valid email address.")],
     					render_kw={"placeholder":"johnson@saveory.com"})

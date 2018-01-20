@@ -1,5 +1,8 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from db import mongo
+#from db import mongo
+from flask import Flask
+from views import mongo
+
 
 #main user object
 #4 mandatory should be passed as a dictionary in this orded:
@@ -7,25 +10,25 @@ from db import mongo
 #newUser to indicate if we are creating a new user or getting the profile of new user.
 class User(object):
 	#getting the database "saveory"
-	usersDb = mongo
-	__tableName__ = 'usersData'
+	#usersDb = mongo
+	#tableName = 'usersData'
 	def __init__(self, newUser, **kwargs):
 		if newUser :
 			self.firstName = kwargs['firstName'].title()
 			self.lastName = kwargs['lastName'].title()
 			self.email = kwargs['email']
-			#self.password = kwargs['password']
-			self.hashPass = self.hashPassword(kwargs['password'])
+			self.hashPassword = kwargs['password']
+			#self.hashPass = self.hashPassword(self,kwargs['password'])
 
 		else :
-			res = usersDb.__tableName__.find_one({'email' : kwargs['email']})
+			res = mongo.db.usersData.find_one({'email' : kwargs['email']})
 			if res == None:
-				return "userNotExist" #if the newUser is 1 and the user is not exist.
+				return "userNotExist" #if the newUser is 0 and the user is not exist.
 			else :
 				self.firstName = res['firstName']
 				self.lastName = res['lastName']
 				self.email = res['email']
-				self.hashPassw = res['hashPass']
+				self.hashPassword = res['hashPassword']
 				self.age = res['age']
 				self.city = res['city']
 				self.familyStatus = res['familyStatus']
@@ -34,30 +37,37 @@ class User(object):
 				self.employmentStatus = res['employmentStatus']
 	
 	#Insert the user to the database    
-	@classmethod
+	#@classmethod
 	def addUser(self):
-		res = usersDb.__tableName__.find_one({'email' : self.email})
+		data = mongo.db.usersData
+		res = data.find_one({'email' : self.email})
 		if res != None :
 			return "exist"
-		self.usersDb.__tableName__.isnert(
+		#print(self.hashPass)
+		data.insert(
 			{
 				"firstName" : self.firstName,
 				"lastName" : self.lastName,
 				"email" : self.email,
 				"hashPassword" : self.hashPassword,
-				"age" : null,
-				"city" : null,
-				"familyStatus" : null, 
-				"livingConditions" : null,
-				"numOfRoomMate" : null,
-				"employmentStatus" : null  
+				"age" : None,
+				"city" : None,
+				"familyStatus" : None, 
+				"livingConditions" : None,
+				"numOfRoomMate" : None,
+				"employmentStatus" : None  
 			}
 		)
-	
+	def checkPass(self, password):
+		if self.hashPassword == password:
+			return True
+		return False
+
+
 	@staticmethod
 	def hashPassword(self,password):
 		return  generate_password_hash(password)
-	@classmethod
+	#@classmethod
 	def cehckPassword(self, password):
 		return check_password_hash(self.hashPass,password)
 
