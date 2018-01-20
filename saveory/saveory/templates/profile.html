@@ -4,15 +4,16 @@
         
 <div class="prof-cont">
         <div class="profile-edit">
-            <form action="#" method="post">
+            <form action="{{ url_for('profile') }}" method="post">
                 <table>
                         <tr>
                             <td>First Name: </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" value="{{ fname }}" ></td>
+                            
                         </tr>
                         <tr>
                             <td>Last Name: </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" value=" {{ lname }}"></td>
                         </tr>
                         <tr>
                             <td>City: </td>

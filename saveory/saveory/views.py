@@ -42,7 +42,8 @@ def register():
             except 'userNotExist':
                 return render_template('index.html', lform=lform, rform=SigninForm())
             session['email'] = newUser.email
-            return  render_template('profile.html',newUser=True)
+            return  render_template('profile.html', fname = credentials['firstName'],
+                                                    lname = credentials['lastName'])
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -70,6 +71,11 @@ def logout():
 
 @app.route('/home', methods=['GET','POST'])
 def home():
+    email= session['email']
+    credentials = { "email" : email }
+    user = User(False,**credentials)
+    print user.firstName
+    fname = user.firstName
     return render_template('main.html')
 
 @app.route('/upload', methods=['GET','POST'])
@@ -80,7 +86,12 @@ def upload():
 
 @app.route('/profile', methods=['GET','POST'])
 def profile():
-    return render_template('profile.html')
+    email= session['email']
+    credentials = { "email" : email }
+    user = User(False,**credentials)
+    print user.firstName
+    fname = user.firstName
+    return render_template('main.html' )
 
 @app.route('/analyze', methods=['GET','POST'])
 def analyze():
