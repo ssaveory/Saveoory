@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>$aveory</title>
-        <link  href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" >
-        <link  href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" >
-        <script src="https://use.fontawesome.com/e80d0149e1.js"></script>
-        
-    </head>
+{% extends "layout.html" %}
+{% block body %}
 
-    <body>
-        <div class="header">
-            <div class="menu">
-                <ul>
-                    <li><a href="main.html">Home</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="analyze.html">Analyze</a>
-                        <ul>
-                            <li><a href="">גרף1</a></li>
-                            <li><a href="">גרף2</a></li>
-                            <li><a href="">גרף3</a></li>
-                            <li><a href="">גרף4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="masswiz.html">mass wiz</a>
-                        <ul>
-                            <li><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.html"><i class="fa fa-power-off"></i></a></li>
-                </ul>
-            </div>
-        </div>  
         
-    <div class="prof-cont">
+<div class="prof-cont">
         <div class="profile-edit">
             <form action="#" method="post">
                 <table>
@@ -112,5 +81,4 @@
             </form>
         </div>
     </div>
-    </body>
-</html>
+{% endblock %}

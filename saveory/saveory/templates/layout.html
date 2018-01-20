@@ -1,20 +1,57 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>$aveory</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/index.css') }}">
-    <body>
-        <h1>$aveory</h1>   
-        <div class="container">
-           
-         
+        <title>SAVORY</title>
+        <link  href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" >
+        <link  href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" >
+        <script src="https://use.fontawesome.com/e80d0149e1.js"></script>
 
-            <div class="promo-video">
-                <iframe width="500px" height="322px" src="https://www.powtoon.com/embed/bkg1Xo7dKNq/"></iframe>
+        <!-- Boostrap   -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+          
+
+
+                
+    </head>
+    <body>
+        <div  class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                    <li><a href="{{ url_for('analyze') }}">Analyze</a>
+                        <ul>
+                            <li><a href="">גרף1</a></li>
+                            <li><a href="">גרף2</a></li>
+                            <li><a href="">גרף3</a></li>
+                            <li><a href="">גרף4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url_for('masswiz') }}">mass wiz</a>
+                        <ul>
+                            <li><a href="">khalifa1</a></li>
+                            <li><a href="">khalifa2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url_for('logout') }}"><i class="fa fa-power-off"></i></a></li>
+                </ul>
             </div>
-        </div>
+        </div>  
+        
+        {% block body %}{% endblock %}
+           
+        
         
     </body>
 </html>

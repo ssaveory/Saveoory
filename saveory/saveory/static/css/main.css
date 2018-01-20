@@ -4,7 +4,7 @@
 
 body {
     background: url("background.jpeg") no-repeat;
-    background-size: none;
+    background-size: cover;
     font-family: 'Noto Sans', sans-serif;
 
 }
@@ -14,7 +14,7 @@ body {
     justify-content: center;
 }
 .menu {
-    max-width: 50%;
+    max-width: 100%;
 }
    
 ul {
@@ -101,6 +101,25 @@ form {
     border-radius: 20px;
 }
 
+.main-home-update {
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+
+.manual-upload, .statement,  .lets-save-money{
+    border: solid white 1px;
+    border-radius: 15px;
+    padding: 5px;
+}
 
 .main-container {
     display: flex;
@@ -109,7 +128,7 @@ form {
 }
 
 .main-table {
-    margin-top: 30px;
+    margin-top: 0.5px;
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
     padding: 20px;

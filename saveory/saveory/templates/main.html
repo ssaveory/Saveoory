@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>$AVORY</title>
-        <link  href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" >
-        <link  href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" >
-        <script src="https://use.fontawesome.com/e80d0149e1.js"></script>
-        
-    </head>
-
-    <body>
-        <div  class="header">
-            <div class="menu">
-                <ul>
-                    <li><a href="main.html">Home</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="analyze.html">Analyze</a>
-                        <ul>
-                            <li><a href="">גרף1</a></li>
-                            <li><a href="">גרף2</a></li>
-                            <li><a href="">גרף3</a></li>
-                            <li><a href="">גרף4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="masswiz.html">mass wiz</a>
-                        <ul>
-                            <li><a href="">khalifa1</a></li>
-                            <li><a href="">khalifa2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.html"><i class="fa fa-power-off"></i></a></li>
-                </ul>
-            </div>
-        </div>  
-        
+{% extends "layout.html" %}
+{% block body %}
         <div class="main-container">
             <div class="main-table">
                 <p>DATA TABLE</p>
@@ -60,12 +27,147 @@
                     </tr>                      
                 </table>
 
-            </div>
-            <div class="main-graph">
-                <img src="./css/graph.png">
-            </div>
-        </div>
-        
+              <div style=" top:60px; left:100; width:500px; height:500px;">
 
-    </body>
-</html>
+<canvas id="myChart" width="10" height="10"></canvas>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+</div>
+
+
+
+        <div class="main-home-update">
+            
+                <form class="main-home-container" method="POST" enctype=multipart/form-data action ="{{ url_for('upload') }}">
+                    
+                    <div class="statement">
+                        <h2>Upload your bank and credit card statement</h2>
+                        <p><b>Choose Month and Year of the statements:</b></p>
+                        <input type="month" id="myMonth" value="2018-01">
+                
+                        <p><b>Upload CSV files only</b></p>
+                
+                        <p><b>Bank statement:</b>
+                        <input type="file" name="bank_file"></p>
+                
+                        <p><b>Credit card number's last 4 digits:</b>
+                        <input type="text" id="card_number" name="credit_card_number"></p> 
+                
+                        <b>Credit card statement:</b>
+                        <input type="file" name="card_file"></br>
+                        <button class="button" type="submit">Submit</button>
+
+                    </div>
+                    <div class="lets-save-money">
+                        <h2>lets save some money</h2>
+                        <p>Please enter the amount of money you would like to save and we'll keep track of it for you</p>
+                        <p>we'll let you know when you hit the target, START SAVING !!!</p>
+                
+                        <input type="text" id="save_money" name="wanted_amount">
+                
+                        <button class="button" type="submit">Submit</button>
+                    </div>
+                    <div class="manual-upload">
+                        <h2>Update your balance</h2>                        
+                        <form>
+                            <table>
+                                <tr>
+                                    <td>Date:</td>
+                                    <td><input type="date"></td>
+                                </tr>
+                                <tr>
+                                    <td>Amount:</td>
+                                    <td><input type="text"></td>
+                                </tr>
+                                <tr>
+                                    <div>
+                                        <input type="radio" id="balanceChoice1"
+                                               name="balance" value="income">
+                                        <label for="contactChoice1">Income</label>
+                                        <input type="radio" id="balanceChoice2"
+                                               name="balance" value="outcome">
+                                        <label for="contactChoice2">Outcome</label>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div>
+                                        <input type="radio" id="transferChoice1"
+                                                name="transfer" value="cash">
+                                        <label for="transferChoice1">Cash</label>
+                                        <input type="radio" id="transferChoice2"
+                                                name="transfer" value="credit">
+                                        <label for="transferChoice2">Credit</label>
+                                        <input type="radio" id="transferChoice3"
+                                                name="transfer" value="bank">
+                                        <label for="transferChoice3">Bank Transfer</label>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="balance-dropdown">
+                                        <select name="balance-category">
+                                            <option value="1">Gazoline</option>
+                                            <option value="2">Supermarket</option>
+                                            <option value="3">restaurant</option>
+                                            <option value="4">hangouts</option>
+                                            <option value="5">drugs</option>
+                                            <option value="6">water bill</option>
+                                            <option value="7">electric bill</option>
+                                            <option value="8">rent</option>
+                                            <option value="9">clothes</option>
+                                            <option value="10">vacation</option>
+                                            <option value="11">gifts</option>
+                                            <option value="12">health care</option>
+                                            <option value="13">sports</option>
+                                            <option value="14">pleasure</option>
+                                            <option value="15">other</option>
+                                        </select>
+                                    </div>
+                                </tr>
+                            </table>
+                            <button class="button" type="submit">Submit</button>
+                        </form>
+                    </div>
+            
+            
+                </form>
+        </div>
+                    </div>
+
+{% endblock %}

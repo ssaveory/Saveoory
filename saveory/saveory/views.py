@@ -31,16 +31,18 @@ def register():
         if lform.validate() == False:
             return render_template('index.html', lform=lform, rform=SigninForm())
         else:
-            credentials = { 'firstName' : lform.firstName.data,
+            credentials = { "firstName" : lform.firstName.data,
                              "lastName" : lform.lastName.data, 
                              "email" : lform.email.data,
                              "password" : lform.password.data
                              }
             newUser = User(True,**credentials)
-            exist = newUser.addUser()
-            if exist == "exist":
+            try:
+                newUser.addUser()
+            except 'userNotExist':
                 return render_template('index.html', lform=lform, rform=SigninForm())
-            return  render_template('profile.html')
+            session['email'] = newUser.email
+            return  render_template('profile.html',newUser=True)
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -55,8 +57,40 @@ def signin():
             #if exist == "userNotExist":
             #    return render_template('index.html', rform=rform, lform=SignupForm())
             if user.checkPass(rform.password.data):
-                return render_template('main.html')
+                session['email'] = rform.email.data
+                return redirect(url_for('home'))
             return render_template('index.html', rform=rform, lform=SignupForm())
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    session.pop('email', None)
+    return render_template('index.html',lform=SignupForm(),rform=SigninForm())
+
+
+
+@app.route('/home', methods=['GET','POST'])
+def home():
+    return render_template('main.html')
+
+@app.route('/upload', methods=['GET','POST'])
+def upload():
+    return render_template('main.html')
+
+
+
+@app.route('/profile', methods=['GET','POST'])
+def profile():
+    return render_template('profile.html')
+
+@app.route('/analyze', methods=['GET','POST'])
+def analyze():
+    return render_template('main.html')
+
+@app.route('/masswiz', methods=['GET','POST'])
+def masswiz():
+    return render_template('main.html')
+
+
 
 
 if __name__ == '__main__':
