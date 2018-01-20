@@ -1,76 +1,103 @@
 {% extends "layout.html" %}
 {% block body %}
-        <div class="main-container">
-            <div class="main-table">
-                <p>DATA TABLE</p>
-                <table>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                    </tr>                      
-                </table>
+      <div class="main-table">
+        <p>Last Transactions</p>
 
-              <div style=" top:60px; left:100; width:500px; height:500px;">
+         <script src="/static/js/initialise.js" type="text/javascript" charset="utf-8" async defer></script>
 
-<canvas id="myChart" width="10" height="10"></canvas>
-<script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
+        <table id="example" class="display" cellspacing="0" width="100%">
+
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Action</th>
+                <th>Catigory</th>
+                <th>Amount</th>
+                <th>Column 5</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+                <th>Column 5</th>
+            </tr>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+                <th>Column 5</th>
+            </tr>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+                <th>Column 5</th>
+            </tr>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+                <th>Column 5</th>
+            </tr>
+        </tfoot>
+    </table>
+<hr size="pixels">
+        <p>Last Transactions</p>
+        <div style=" padding-left:0; padding-right:0; top:60px; right:600; width:400px; height:400px;">
+        <canvas id="myChart" width="300" height="300"></canvas>
+        <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            ctx.canvas.width = 300;
+            ctx.canvas.height = 300;
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Gazoline", "Supermarket", "restaurant", "hangouts", "drugs", "water bill",
+                     "electric bill", "rent", " clothes", "vacation", "gifts", "health", "sports", "pleasure", "others"],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [500, 1900, 300, 500, 200, 100,800,3000,100,1000,50,30,0,500,400],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(76, 76, 178, 0.8)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
                 }
-            }]
-        }
-    }
-});
-</script>
-</div>
+            });
+        </script>
+        </div>
 
+    <hr size="pixels">
 
 
         <div class="main-home-update">
