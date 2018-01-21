@@ -1,19 +1,38 @@
-#from saveory import app
 from flask import Flask, render_template, redirect, url_for, request, session
 from pymongo import MongoClient
-#from db import mongo
 from forms import SignupForm, SigninForm
 from models import *
 from flask_pymongo import PyMongo
+#from flask.ext.sqlalchemy import SQLAlchemy
+import psycopg2
+import os
+
 
 
 app = Flask(__name__)
 
 app.secret_key = "$aveory"
+
+#manager = Manager(app)
+
+
 app.config['MONGO_DBNAME'] = 'saveory' 
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/saveory'
-
 mongo = PyMongo(app, config_prefix='MONGO')
+
+#app.config.from_object('APP_SETTING')
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://saveory:saveory@localhost:5432/saveory'
+#db = SQLAlchemy(app)
+
+#with app.app_context():
+    #db.create_all()
+    #conn = psycopg2.connect("host=localhost dbname=saveory user=saveory password=saveory")
+   # cur = conn.cursor()
+  #  cur.execute("CREATE TABLE transactions("User" VARCHAR(40) PRIMARY KEY, datestamp VARCHAR(40), category VARCHAR(40), description VARCHAR(40), amount FLOAT, action VARCHAR(40));")
+
+
+
 
 
 
@@ -111,7 +130,7 @@ def home():
 
 @app.route('/upload', methods=['GET','POST'])
 def upload():
-    return render_template('main.html')
+    return redirect(url_for('home'))
 
 
 
@@ -153,4 +172,4 @@ def masswiz():
 
 if __name__ == '__main__':
     #app.secret_key = '$aveory'
-    app.run(host='0.0.0.0',port=5001,debug=True)
+    app.run(host='0.0.0.0',port=5000,debug=True)

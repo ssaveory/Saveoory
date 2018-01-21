@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 #from db import mongo
 from flask import Flask
-from views import mongo
+from views import mongo 
 
 
 #main user object
@@ -101,6 +101,8 @@ class Profile(object):
 		data.update({"email": self.email}, {'$set' : {"numOfRoomMate" : self.numOfRoomMate }})
 		data.update({"email": self.email}, {'$set' : {"employmentStatus" : self.employmentStatus }})
 
-		
 
 
+
+	#transactions = db.relationship('user', 'datestamp', 'category', 'description', 'amout', 'action')
+	
