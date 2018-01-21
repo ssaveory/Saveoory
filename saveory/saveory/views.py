@@ -3,17 +3,16 @@ from pymongo import MongoClient
 from forms import SignupForm, SigninForm
 from models import *
 from flask_pymongo import PyMongo
-#from flask.ext.sqlalchemy import SQLAlchemy
 import psycopg2
 import os
+import pandas as pd
+import csv
 
 
 
 app = Flask(__name__)
 
 app.secret_key = "$aveory"
-
-#manager = Manager(app)
 
 
 app.config['MONGO_DBNAME'] = 'saveory' 
@@ -38,6 +37,8 @@ mongo = PyMongo(app, config_prefix='MONGO')
 
 @app.route('/')
 def index():
+    if 'email' in session:
+        return redirect(url_for('home'))
     return render_template('index.html',lform=SignupForm(),rform=SigninForm())
 
 ####################################################
@@ -117,6 +118,8 @@ def logout():
 
 @app.route('/home', methods=['GET','POST'])
 def home():
+    if 'email' not in session:
+        return redirect(url_for('index'))
     email= session['email']
     credentials = { "email" : email }
     user = User(False,**credentials)
@@ -126,13 +129,26 @@ def home():
 
 
 ####################################################
-
-
 @app.route('/upload', methods=['GET','POST'])
 def upload():
+    
+    #bankfile = request.files['bank_file']
+    #cardfile = request.files['card_file']
+    #bank = pd.read_table(bankfile)
+    #for row in bank:
+     #   print(row)
+
     return redirect(url_for('home'))
 
 
+@app.route('/savemoney', methods=['GET','POST'])
+def save():
+    return redirect(url_for('home'))
+
+
+@app.route('/manualupload', methods=['GET','POST'])
+def manual():
+    return redirect(url_for('home'))
 
 
 
@@ -141,6 +157,7 @@ def upload():
 
 @app.route('/profile', methods=['GET','POST'])
 def profile():
+    return render_template('profile.html' )
     email= session['email']
     password = session['password']
     credentials = { "firstName": request.form['fname'], "lastName": request.form['lname'],"email" : email,
@@ -150,9 +167,18 @@ def profile():
                      "age": request.form['bday'] }
     
     profile = Profile(**credentials)
-    profile.editProfile()
+    if request.method == 'POST':
+        profile.editProfile()
+        return render_template('main.html' )
+    return  render_template('profile.html', fname = request.form['fname'],
+                                                    lname = request.form['lname'],
+                                                    city = None,
+                                                    fstatus = None,
+                                                    licond = None,
+                                                    numppl = None,
+                                                    empstatus = None,
+                                                    age = None)
 
-    return render_template('main.html' )
 
 
 
@@ -161,11 +187,13 @@ def profile():
 ####################################################
 @app.route('/analyze', methods=['GET','POST'])
 def analyze():
-    return render_template('main.html')
+    labels = ["January","February","March","April","May","June","July","August"]
+    values = [10,9,8,7,6,4,7,8]
+    return render_template('analyze.html', values = values, lasbels = labels)
 
 @app.route('/masswiz', methods=['GET','POST'])
 def masswiz():
-    return render_template('main.html')
+    return render_template('masswiz.html')
 
 
 

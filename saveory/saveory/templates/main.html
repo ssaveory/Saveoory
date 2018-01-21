@@ -13,94 +13,59 @@
                 <th>Action</th>
                 <th>Catigory</th>
                 <th>Amount</th>
-                <th>Column 5</th>
+                
             </tr>
         </thead>
         <hr size="pixels">
 
         <tfoot>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th>18/1/2018</th>
+                <th>outcome</th>
+                <th>hangouts</th>
+                <th>500</th>
+             
             </tr>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th>15/1/2018</th>
+                <th>outcome</th>
+                <th>Restaurant</th>
+                <th>1000</th>
+                
             </tr>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th>10/1/2018</th>
+                <th>income</th>
+                <th>Salary</th>
+                <th>5000</th>
+              
             </tr>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th>5/1/2018</th>
+                <th>outcome</th>
+                <th>hangouts</th>
+                <th>500</th>
+                
             </tr>
         </tfoot>
     </table>
 <hr size="pixels">
-        <p>Last Transactions</p>
-        <div style=" padding-left:0; padding-right:0; top:60px; right:600; width:400px; height:400px; color: white;">
-        <canvas id="myChart" width="300" height="300"></canvas>
-        <script>
-            var ctx = document.getElementById("myChart").getContext('2d');
-            ctx.canvas.width = 300;
-            ctx.canvas.height = 300;
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ["Gazoline", "Supermarket", "restaurant", "hangouts", "drugs", "water bill",
-                     "electric bill", "rent", " clothes", "vacation", "gifts", "health", "sports", "pleasure", "others"],
-                    datasets: [{
-                        label: '# of Votes',
-                        data: [500, 1900, 300, 500, 200, 100,800,3000,100,1000,50,30,0,500,400],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(76, 76, 178, 0.8)',
 
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
+        <p>Spend distribution - current month </p>
+        <div style=" font:.font-20;padding-left:0; padding-right:0; top:60px; left:600px; width:400px; height:400px; color: white;">
+        <canvas id="myChart" width="100" height="300"></canvas>
+        <script src="/static/js/spendchart.js" type="text/javascript" charset="utf-8" ></script>
     
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true,
-                                fontSize: 20,
-                            }
-                        }]
-                        
-                    }
 
-                }
-            });
-        </script>
+<!--
+        <p>incomes vs outcomes - current month </p>
+              
+         <canvas id="canvas" height="450" width="450"></canvas>
+         <script src="/static/js/pichart.js" type="text/javascript" charset="utf-8" ></script>
+           
+
+
+    --> 
         </div>
 
     <hr size="pixels">
@@ -113,7 +78,7 @@
                     <div class="statement">
                         <h2>Upload your bank and credit card statement</h2>
                         <p><b>Choose Month and Year of the statements:</b></p>
-                        <input type="month" id="myMonth" value="2018-01">
+                        <input type="month" id="myMonth" value="2018-01" name="month">
                 
                         <p><b>Upload CSV files only</b></p>
                 
@@ -128,8 +93,9 @@
                         <button class="button" type="submit">Submit</button>
 
                     </div>
+                </form>
                     <hr size="pixels">
-
+                    <form class="main-home-container" method="POST" enctype=multipart/form-data action ="{{ url_for('save') }}">
                     <div class="lets-save-money">
                         <h2>lets save some money</h2>
                         <p>Please enter the amount of money you would like to save and we'll keep track of it for you</p>
@@ -139,9 +105,11 @@
                 
                         <button class="button" type="submit">Submit</button>
                     </div>
+                </form>
+                     <hr size="pixels">
+                    <form class="main-home-container" method="POST" enctype=multipart/form-data action ="{{ url_for('manual') }}">
                     <div class="manual-upload">
-                        <hr size="pixels">
-
+                        
                         <h2>Update your balance</h2>                        
                         <form>
                             <table>
@@ -203,8 +171,6 @@
                     </div>
             
             
-                </form>
         </div>
-                    </div>
 
 {% endblock %}

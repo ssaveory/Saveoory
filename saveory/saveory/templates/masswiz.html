@@ -1,39 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>SAVORY</title>
-        <link rel="stylesheet" type="text/css" href="./css/main.css">
-        <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
-        <script src="https://use.fontawesome.com/e80d0149e1.js"></script>
-        
-    </head>
+{% extends "layout.html" %}
+{% block body %}
 
-    <body>
-        <div  class="header">
-            <div class="menu">
-                <ul>
-                    <li><a href="main.html">Home</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="analyze.html">Analyze</a>
-                        <ul>
-                            <li><a href="">גרף1</a></li>
-                            <li><a href="">גרף2</a></li>
-                            <li><a href="">גרף3</a></li>
-                            <li><a href="">גרף4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="masswiz.html">mass wiz</a>
-                        <ul>
-                            <li><a href="">khalifa1</a></li>
-                            <li><a href="">khalifa2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.html"><i class="fa fa-power-off"></i></a></li>
-                </ul>
-            </div>
-        </div>  
-        
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-    </body>
-</html>
+      <div class="main-table" >
+        <p>Category camparision - with people like you</p>
+<div style=" font:.font-20;padding-left:0; padding-right:0; top:60px; left:600px; width:400px; height:400px; color: white;">
+<canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+
+
+         <script src="/static/js/chart4.js" type="text/javascript" charset="utf-8" ></script>
+        
+</div>
+        
+<hr size="pixels">
+
+
+
+       </div>
+       
+
+                    
+                        
+                    </div>
+            
+            
+        </div>
+{% endblock %}
