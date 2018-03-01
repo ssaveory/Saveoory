@@ -6,12 +6,14 @@ new Chart(document.getElementById("bar-chart-grouped"), {
         {
           label: "income",
           backgroundColor: "#00FF00",
-          data: [5000,6000,8000,2478, 7000, 6000, 4500,10000]
-        }, {
+          data : [{% for item in values1 %}
+                      {{item}},
+                    {% endfor %}]        }, {
           label: "outcome",
           backgroundColor: "#FF0000 ",
-          data: [6000,5473,6750,7340, 7000, 5000, 4500, 9000]
-        }
+          data : [{% for item in values2 %}
+                      {{item}},
+                    {% endfor %}]        }
       ]
     },
     options: {

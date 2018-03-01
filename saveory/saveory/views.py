@@ -7,6 +7,8 @@ import psycopg2
 import os
 import pandas as pd
 import csv
+from flask.ext.sqlalchemy import SQLAlchemy
+
 
 
 
@@ -20,15 +22,9 @@ app.config['MONGO_URI'] = 'mongodb://localhost:27017/saveory'
 mongo = PyMongo(app, config_prefix='MONGO')
 
 #app.config.from_object('APP_SETTING')
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://saveory:saveory@localhost:5432/saveory'
-#db = SQLAlchemy(app)
-
-#with app.app_context():
-    #db.create_all()
-    #conn = psycopg2.connect("host=localhost dbname=saveory user=saveory password=saveory")
-   # cur = conn.cursor()
-  #  cur.execute("CREATE TABLE transactions("User" VARCHAR(40) PRIMARY KEY, datestamp VARCHAR(40), category VARCHAR(40), description VARCHAR(40), amount FLOAT, action VARCHAR(40));")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://saveory:saveory@localhost:5432/saveory'
+db = SQLAlchemy(app)
 
 
 
@@ -123,21 +119,34 @@ def home():
     email= session['email']
     credentials = { "email" : email }
     user = User(False,**credentials)
-    print user.firstName
     fname = user.firstName
-    return render_template('main.html')
+    conn = psycopg2.connect("host=localhost dbname=saveory user=saveory password=saveory")
+    cur = conn.cursor()
+    email= session['email']
+    cur.execute('SELECT * FROM  transactions WHERE user = %s',(email))
+    data = cursor.fetchall():
+    conn.commit()
+    cur.close()
+    conn.close()
+    return render_template('main.html', data)
 
 
 ####################################################
 @app.route('/upload', methods=['GET','POST'])
 def upload():
     
-    #bankfile = request.files['bank_file']
-    #cardfile = request.files['card_file']
-    #bank = pd.read_table(bankfile)
-    #for row in bank:
-     #   print(row)
+    bankfile = request.files['bank_file']
+    cardfile = request.files['card_file']
+    cols=['date','action','amount','category']
+    bank = pd.Series.from_csv(bankfile, names=cols).to_dict()
 
+    conn = psycopg2.connect("host=localhost dbname=saveory user=saveory password=saveory")
+    cur = conn.cursor()
+    email= session['email']
+    cur.execute('INSERT INTO transactions VALUES(%s,%s,%s,%s,%s)',(email,bank['date'],bank['action'],bank['amount'],bank['category']))
+    conn.commit()
+    cur.close()
+    conn.close()
     return redirect(url_for('home'))
 
 
@@ -187,9 +196,16 @@ def profile():
 ####################################################
 @app.route('/analyze', methods=['GET','POST'])
 def analyze():
-    labels = ["January","February","March","April","May","June","July","August"]
-    values = [10,9,8,7,6,4,7,8]
-    return render_template('analyze.html', values = values, lasbels = labels)
+    conn = psycopg2.connect("host=localhost dbname=saveory user=saveory password=saveory")
+    cur = conn.cursor()
+    email= session['email']
+    cur.execute('SELECT sum(amount) as amount, category FROM  transactions WHERE user = %s group by user, datestamp, category',(email))
+    data = cursor.fetchall():
+    conn.commit()
+    cur.close()
+    conn.close()
+    labels = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    return render_template('analyze.html', values = values, lasbels = labels, data = data)
 
 @app.route('/masswiz', methods=['GET','POST'])
 def masswiz():
@@ -197,7 +213,3 @@ def masswiz():
 
 
 
-
-if __name__ == '__main__':
-    #app.secret_key = '$aveory'
-    app.run(host='0.0.0.0',port=5000,debug=True)

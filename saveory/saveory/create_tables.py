@@ -4,23 +4,21 @@ import psycopg2
 
 @manager.command
 def create_tables():
-	print 1
-	""" create tables in the PostgreSQL database"""
+    print 1
+    """ create tables in the PostgreSQL database"""
     commands = (
         """
         CREATE TABLE transactions (
             user VARCHAR(255) PRIMARY KEY,
             datestamp VARCHAR(255),
+            action VARCHAR(255),
+            amount REAL,
             category VARCHAR(255),
-            description VARCHAR(255),
-			amount REAL,
-			action VARCHAR(255)
             )
         """)
     conn = None
     try:
-        # read the connection parameters
-        #params = config()
+       
         # connect to the PostgreSQL server
         conn = psycopg2.connect(host="localhost",database="saveory", user="saveory", password="saveory")
         cur = conn.cursor()

@@ -1,10 +1,6 @@
-from setuptools import setup
+from views import *
 
-setup(
-	name='saveory',
-	packages=['saveory'],
-	include_package_data=True,
-	install_requires=[
-		'flask',
-	],
-)
+
+if __name__ == '__main__':
+    #app.secret_key = '$aveory'
+    app.run(host='0.0.0.0',port=5000)
