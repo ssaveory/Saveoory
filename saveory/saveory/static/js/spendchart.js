@@ -8,10 +8,8 @@ var ctx = document.getElementById("myChart").getContext('2d');
                      "electric bill", "rent", " clothes", "vacation", "gifts", "health", "sports", "pleasure", "others"],
                     datasets: [{
                         label: '# of Votes',
-                        data : [{% for item in values %}
-                      {{item}},
-                    {% endfor %}]                       
-                     backgroundColor: [
+                        data: [500, 1900, 300, 500, 200, 100,800,3000,100,1000,50,30,0,500,400],
+                        backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
