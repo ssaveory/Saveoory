@@ -4,11 +4,14 @@ var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Gazoline", "Supermarket", "restaurant", "hangouts", "drugs", "water bill",
-                     "electric bill", "rent", " clothes", "vacation", "gifts", "health", "sports", "pleasure", "others"],
+                    labels: [{% for label in labels %}
+                                    "{{label}}",
+                            {% endfor %}],
                     datasets: [{
                         label: '# of Votes',
-                        data: [500, 1900, 300, 500, 200, 100,800,3000,100,1000,50,30,0,500,400],
+                        data: [{% for value in values %}
+                                    "{{value}}",
+                            {% endfor %}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
