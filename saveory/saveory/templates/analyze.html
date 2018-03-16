@@ -7,7 +7,42 @@
 <div style=" font:.font-20;padding-left:0; padding-right:0; top:60px; left:600px; width:400px; height:400px; color: white;">
 <canvas id="line-chart" width="800" height="450"></canvas>
 
-         <script src="/static/js/chart1.js" type="text/javascript" charset="utf-8" ></script>
+         <script >
+             new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels : [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+    datasets: [{ 
+        data : [{% for item in values1 %}
+                      {{item}},
+                    {% endfor %}],
+        label: "current month",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data : [{% for item in values2 %}
+                      {{item}},
+                    {% endfor %}],
+        label: "last month",
+        borderColor: "#8e5ea2",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Gazoline spend month over month'
+    }
+  }
+});
+
+
+
+             
+         </script>
         
 </div>
         

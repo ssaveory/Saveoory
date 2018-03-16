@@ -4,6 +4,7 @@ from forms import SignupForm, SigninForm
 from models import *
 from flask_pymongo import PyMongo
 import psycopg2
+import psycopg2.extras
 import os
 import pandas as pd
 import csv
@@ -267,9 +268,31 @@ def profile():
 ####################################################
 @app.route('/analyze', methods=['GET','POST'])
 def analyze():
-    labels = ["January","February","March","April","May","June","July","August"]
-    values = [10,9,8,7,6,4,7,8]
-    return render_template('analyze.html', values = values, lasbels = labels)
+    #connect to the database
+    conn = psycopg2.connect("host=localhost dbname=saveory user=saveory password=saveory")
+    cur = conn.cursor()
+
+    #Find current day in the month#
+    todayDate = datetime.datetime.now().strftime('%Y%m%d')
+
+    #Find first day in the month#
+    todayDate = datetime.date.today()
+    if todayDate.day > 25:
+        todayDate += datetime.timedelta(7)
+    monthStart= todayDate.replace(day=1).strftime('%Y%m%d')
+
+
+    ###fetching the data for Gas month over month
+    cur.execute("""select * from transactions where userid='%s' and (datestamp between '%s' and '%s') and category='Gas' """ % (email,monthStart,now))
+    conn.commit()
+    
+
+
+    labels = dct
+    cur.close()
+    conn.close()
+    
+    return render_template('analyze.html',  lasbels = labels,values1 = values1, values2 = values2)
 
 @app.route('/masswiz', methods=['GET','POST'])
 def masswiz():
